@@ -12,22 +12,6 @@ const router = new Router({
       path: '/',
       component: Home,
     },
-    {
-      path: '/corp/:status/register',
-      component: () => import(/* webpackChunkName: "corp_status" */ './views/corp/_status/register.vue'),
-    },
-    {
-      path: '/campus/:status',
-      component: () => import(/* webpackChunkName: "campus_status" */ './views/campus/_status.vue'),
-    },
-    {
-      path: '/jobfair/:status',
-      component: () => import(/* webpackChunkName: "jobfair_status" */ './views/jobfair/_status.vue'),
-    },
-    {
-      path: '/jobinfo/:status',
-      component: () => import(/* webpackChunkName: "jobinfo_status" */ './views/jobinfo/_status.vue'),
-    },
   ],
 });
 

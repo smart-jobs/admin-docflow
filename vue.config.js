@@ -6,6 +6,11 @@ module.exports = {
   // baseUrl: './',
   baseUrl: process.env.VUE_APP_ROOT_URL + '/docflow',
 
+  pages: {
+    index: 'src/main.js',
+    details: 'src/details/main.js',
+  },
+
   configureWebpack: {
     externals: {
       'element-ui': 'Element',

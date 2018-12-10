@@ -1,25 +1,21 @@
 <template>
-  <scroll-page id="app">
+  <div id="app">
     <div class="weui-loadmore" v-if="loading">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
     </div>
     <router-view v-else/>
-  </scroll-page>
+  </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import ScrollPage from '@naf/layouts/scroll-page';
 
 export default {
-  components: {
-    ScrollPage,
-  },
   name: 'App',
   metaInfo: {
-    title: '就业系统',
-    titleTemplate: '就业系统 - %s',
+    title: '公文详情',
+    titleTemplate: '公文详情 - %s',
   },
   async mounted() {
     // const res = await this.load();

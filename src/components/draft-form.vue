@@ -67,7 +67,7 @@ export default {
   },
   data() {
     return {
-      form: { ...this.data },
+      form: { ...this.data, attachment: [{ name: '00.jpg', uri: 'just for test' }] },
       rules: {
         docno: requiredAndMaxlen('文号', 20),
         title: requiredAndMaxlen('标题', 20),

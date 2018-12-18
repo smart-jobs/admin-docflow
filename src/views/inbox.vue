@@ -7,6 +7,18 @@
       </div>
       <data-grid :data="items" :meta="fields" :operation="listOper" :paging="true" :total="total" @query="handleQuery"
                  @preview="handlePreview" @feecback="handleFeecback">
+        <template slot="list-ext">
+          <el-table-column width="48" label="..." align="center">
+            <div slot-scope="scope">
+              <el-tooltip content="包含附件" class="icon">
+                <span><i class="naf-icons naf-icon-attachment" v-if="scope.row.info.attachment"></i></span>
+              </el-tooltip>
+              <el-tooltip content="需要回执" class="icon">
+                <span><i class="naf-icons naf-icon-receipt" v-if="scope.row.info.feedback"></i></span>
+              </el-tooltip>
+            </div>
+          </el-table-column>
+        </template>
       </data-grid>
     </el-card>
     <el-card class="right details" size="mini" v-else>

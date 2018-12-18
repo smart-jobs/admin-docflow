@@ -10,7 +10,7 @@
       <el-form-item label="发文单位" prop="sender" :required="true">
         <el-input v-model="form.sender"></el-input>
       </el-form-item>
-      <el-form-item label="接收单位" prop="receiver" :required="true" error="请选择接收单位">
+      <el-form-item label="接收单位" prop="receiver">
         <el-select v-model="form.receiver" placeholder="请选择" multiple style="width: 100%;" @change="handleReceiver">
           <el-option label="（全部）" value="all">
           </el-option>
@@ -22,6 +22,10 @@
       </el-form-item>
       <el-form-item label="内容" prop="content" :required="true">
         <editor v-model="form.content"></editor>
+      </el-form-item>
+      <el-form-item label="有效期" prop="meta.expiredAt">
+        <el-date-picker v-model="form.meta.expiredAt" type="date" placeholder="选择日期">
+        </el-date-picker>
       </el-form-item>
       <el-form-item label="附件" prop="attachment">
         <file-upload v-model="form.attachment"></file-upload>
@@ -35,12 +39,13 @@
       <el-form-item>
         <el-button @click="$emit('cancel')" size="mini">取 消</el-button>
         <el-button type="primary" @click="handleSave" size="mini">保存草稿</el-button>
-        <el-button type="primary" @click="handleSave" size="mini">立即递送</el-button>
+        <el-button type="primary" @click="handleSave({ action: 'post' })" size="mini">立即递送</el-button>
       </el-form-item>
     </slot>
   </el-form>
 </template>
 <script>
+import _ from 'lodash';
 import { createNamespacedHelpers } from 'vuex';
 import Editor from './editor';
 import FileUpload from './file-upload';
@@ -67,12 +72,12 @@ export default {
   },
   data() {
     return {
-      form: { ...this.data, attachment: [{ name: '00.jpg', uri: 'just for test' }] },
+      form: _.cloneDeep(this.data),
       rules: {
-        docno: requiredAndMaxlen('文号', 20),
-        title: requiredAndMaxlen('标题', 20),
-        sender: requiredAndMaxlen('发文单位', 20),
-        receiver: { type: 'array', required: true, min: 1, message: '请选择接收单位', trigger: 'blur' },
+        docno: requiredAndMaxlen('文号', 40),
+        title: requiredAndMaxlen('标题', 100),
+        sender: requiredAndMaxlen('发文单位', 40),
+        receiver: { type: 'array', required: true, min: 1, message: '请选择接收单位', trigger: 'change' },
         content: requiredAndMaxlen('内容', 102400),
       },
       units: [],
@@ -83,10 +88,10 @@ export default {
   },
   methods: {
     ...mapActions(['load']),
-    handleSave() {
+    handleSave({ action }) {
       this.$refs['form'].validate(valid => {
         if (valid) {
-          this.$emit('save', { isNew: this.isNew, data: this.form });
+          this.$emit('save', { isNew: this.isNew, data: this.form, action });
         } else {
           console.warn('form validate error!!!');
         }

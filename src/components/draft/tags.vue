@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      dynamicTags: this.value,
+      dynamicTags: [...this.value],
       inputVisible: false,
       inputValue: '',
     };

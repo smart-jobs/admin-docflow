@@ -7,7 +7,6 @@
   </div>
 </template>
 <script>
-import DraftDlg from '@/components/draft-dlg';
 import DataGrid from '@naf/data/filter-grid';
 import { createNamespacedHelpers } from 'vuex';
 
@@ -15,8 +14,6 @@ const { mapState, mapActions } = createNamespacedHelpers('system/tag');
 
 export default {
   components: {
-    // eslint-disable-next-line vue/no-unused-components
-    DraftDlg,
     DataGrid,
   },
   mounted() {

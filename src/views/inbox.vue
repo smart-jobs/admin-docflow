@@ -1,76 +1,108 @@
 <template>
   <div class="lite">
-    <data-grid :data="items" :action="true" :meta="fields" :operation="operation" @open="handleOpen" @reply="handleReply">
-    </data-grid>
+    <el-card class="right list" size="mini" v-if="view == 'list'">
+      <div slot="header" class="clearfix">
+        <span>公文列表</span>
+        <el-button icon="el-icon-plus" style="float: right; padding: 3px 0" type="text" @click="handleNew" v-if="status == 'draft'">起草公文</el-button>
+      </div>
+      <data-grid :data="items" :meta="fields" :operation="listOper" :paging="true" :total="total" @query="handleQuery"
+                 @preview="handlePreview" @feecback="handleFeecback">
+      </data-grid>
+    </el-card>
+    <el-card class="right details" size="mini" v-else>
+      <div slot="header" class="clearfix">
+        <span>公文详情</span>
+        <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
+      </div>
+      <el-scrollbar>
+        <doc-view :data="current.doc" />
+      </el-scrollbar>
+    </el-card>
   </div>
 </template>
 <script>
+import _ from 'lodash';
+import moment from 'moment';
 import DataGrid from '@naf/data/filter-grid';
+import DocView from '@/components/doc-view';
 import { createNamespacedHelpers } from 'vuex';
+import config from '@frame/config';
+const { pageSize = 10 } = config;
 
-const { mapState, mapActions } = createNamespacedHelpers('system/tag');
+const { mapState, mapActions } = createNamespacedHelpers('inbox');
 
 export default {
   components: {
     DataGrid,
+    DocView,
   },
   mounted() {
-    this.load();
+    this.handleQuery();
   },
   data() {
     return {
       view: 'list',
-      showForm: false,
-      form: {},
-      passwdForm: {},
       fields: [
-        { name: 'docNo', label: '文号', required: true },
-        { name: 'title', label: '标题', required: true },
-        { name: 'content', label: '内容' },
-        { name: 'hasReceipt', label: '是否回执' },
-        { name: 'createUser', label: '发文用户' },
-        { name: 'createDate', label: '创建时间' },
-        { name: 'status', label: '状态' },
-        // { name: 'receiveUnit', label: '接收单位' },
-        // { name: 'attachment', label: '附件' },
-        // { name: 'receiptFields', label: '回执字段' },
+        { name: 'info.docno', label: '文号' },
+        { name: 'info.title', label: '标题' },
+        { name: 'status', label: '处理状态', formatter: this.statusLabel },
+        { name: 'meta.createdAt', label: '发文时间', formatter: ['date', 'YYYY-MM-DD HH:mm'] },
       ],
-      operation: [['open', '打开'], ['reply', '回复']] /* 操作类型 */,
+      oper_work: [['preview', '查看', 'el-icon-view'], ['feedback', '回执', 'el-icon-edit-outline', true]],
+      oper_done: [['preview', '查看', 'el-icon-view']],
     };
   },
   methods: {
-    ...mapActions(['load', 'create', 'delete', 'update']),
-    handleEdit(data) {
-      this.form = { data, isNew: false };
-      this.showForm = true;
+    ...mapActions(['query', 'fetch', 'feecback']),
+    async handlePreview({ docid }) {
+      const res = await this.fetch({ docid });
+      this.$checkRes(res, () => {
+        this.view = 'preview';
+      });
     },
-    handleNew() {
-      const { id: deptId } = this.current || { id: 0 };
-      this.form = { data: { department: [deptId] }, isNew: true };
-      this.showForm = true;
+    async handleFeecback({ docid }) {
+      const res = await this.feedback({ docid });
+      this.$checkRes(res, '办结公文成功');
     },
-    async handleSave(payload) {
-      let res, msg;
-      if (payload.isNew) {
-        res = await this.create(payload.data);
-        msg = '标签添加成功';
-      } else {
-        res = await this.update(payload.data);
-        msg = '标签修改成功';
+    async handleQuery({ filter, paging } = {}) {
+      this.view = 'list';
+      const res = await this.query({ status: this.status, paging });
+      this.$checkRes(res);
+    },
+    statusLabel: (row, column, cellValue, index) => {
+      switch (cellValue) {
+        case 'new':
+          return '未读';
+        case 'read':
+          return '在办';
+        case 'done':
+          return '已办';
+        default:
+          return cellValue;
       }
-      if (this.$checkRes(res, msg)) {
-        this.showForm = false;
-      }
     },
-    async handleDelete(data) {
-      const res = await this.delete(data);
-      this.$checkRes(res, '删除数据成功');
+    receiverLabel: (row, column, cellValue, index) => {
+      return cellValue && cellValue.join(',');
     },
   },
   computed: {
-    ...mapState(['items']),
+    ...mapState(['items', 'current', 'total']),
+    status() {
+      return this.$route.params.status || 'new';
+    },
+    listOper() {
+      if (this.status === 'done') {
+        return this.oper_done;
+      }
+      return this.oper_work;
+    },
+  },
+  watch: {
+    // call again the method if the route changes
+    status: 'handleQuery',
   },
 };
 </script>
 <style lang="less" scoped>
+@import '~@/style/lite.less';
 </style>

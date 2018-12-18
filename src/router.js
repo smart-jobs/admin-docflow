@@ -15,10 +15,20 @@ const router = new Router({
     {
       path: '/draft',
       component: () => import(/* webpackChunkName: "docflow_draft" */ './views/draft.vue'),
+      children: [
+        {
+          path: '/draft/:status',
+        },
+      ],
     },
     {
       path: '/outbox',
       component: () => import(/* webpackChunkName: "docflow_outbox" */ './views/outbox.vue'),
+      children: [
+        {
+          path: '/outbox/:status',
+        },
+      ],
     },
     {
       path: '/archive',

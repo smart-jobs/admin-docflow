@@ -4,7 +4,7 @@ const frameSrc = path.resolve(__dirname, '../admin-frame');
 
 module.exports = {
   // baseUrl: './',
-  baseUrl: process.env.VUE_APP_ROOT_URL + '/docflow',
+  baseUrl: process.env.VUE_APP_ROOT_URL + 'docflow',
 
   pages: {
     index: 'src/main.js',
@@ -36,8 +36,8 @@ module.exports = {
     },
     proxy: {
       '/platform/api': {
-        // target: 'http://localhost:9000',
-        target: 'http://99991.smart.chinahuian.cn',
+        target: 'http://smart.localhost:8000',
+        // target: 'http://99991.smart.chinahuian.cn',
       },
     },
   },

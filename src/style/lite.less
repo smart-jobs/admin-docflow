@@ -15,6 +15,21 @@
 }
 .el-card /deep/ .el-card__header {
   padding: 10px;
+    .title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .action {
+      padding: 0px 10px;
+      float: right;
+      .el-button--text {
+        padding: 0px;   
+      }
+      .el-button + .el-button {
+        margin-left: 5px;   
+      }
+    }
 }
 .el-form {
   max-width: 500px;
@@ -27,5 +42,5 @@
 }
 
 .el-table--mini .icon + .icon {
-  margin-left: 5px;
+  margin-left: 3px;
 }

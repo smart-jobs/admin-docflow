@@ -8,10 +8,14 @@ const api = {
   remind: '/docflow/outbox/remind',
   fetch: '/docflow/outbox/fetch',
   query: '/docflow/outbox/query',
+  posts: '/docflow/outbox/posts',
+  feedback: '/docflow/outbox/feedback',
 };
 // initial state
 export const state = () => ({
   items: [],
+  subitems: [],
+  feedback: [],
   current: null,
   total: 0,
 });
@@ -46,6 +50,24 @@ export const actions = {
     const res = await this.$axios.$post(api.remind, {}, { id });
     return res;
   },
+  async queryPosts({ commit }, { docid }) {
+    const res = await this.$axios.$get(api.posts, { docid });
+    if (res.errcode === 0) {
+      commit(types.SUB_LOADED, res);
+    } else {
+      commit(types.SUB_LOADED, { data: [] });
+    }
+    return res;
+  },
+  async queryFeedback({ commit }, { docid }) {
+    const res = await this.$axios.$get(api.feedback, { docid });
+    if (res.errcode === 0) {
+      commit(types.SUB_LOADED, res);
+    } else {
+      commit(types.SUB_LOADED, { data: [] });
+    }
+    return res;
+  },
 };
 
 // mutations
@@ -53,6 +75,9 @@ export const mutations = {
   [types.LOADED](state, { data, total }) {
     state.items = data;
     state.total = total;
+  },
+  [types.SUB_LOADED](state, { data }) {
+    state.subitems = data;
   },
   [types.SELECTED](state, payload) {
     state.current = payload;

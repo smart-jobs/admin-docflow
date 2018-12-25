@@ -36,7 +36,7 @@ const router = new Router({
     },
     {
       path: '/feedback',
-      component: () => import(/* webpackChunkName: "docflow_feedback" */ './views/feedback.vue'),
+      redirect: '/outbox/feedback',
     },
     {
       path: '/inbox',

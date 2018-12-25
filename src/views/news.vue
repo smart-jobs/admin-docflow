@@ -22,7 +22,6 @@ export default {
       view: 'list',
       showForm: false,
       form: {},
-      passwdForm: {},
       fields: [
         { name: 'docNo', label: '文号', required: true },
         { name: 'title', label: '标题', required: true },

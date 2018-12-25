@@ -3,7 +3,7 @@ import config from '@frame/config';
 const { pageSize = 10 } = config;
 
 const api = {
-  feedback: '/docflow/inbox/feecback',
+  feedback: '/docflow/inbox/feedback',
   fetch: '/docflow/inbox/fetch',
   query: '/docflow/inbox/query',
 };
@@ -30,9 +30,9 @@ export const actions = {
     if (res.errcode === 0) commit(types.SELECTED, res.data);
     return res;
   },
-  async feecback({ commit }, { docid }) {
-    const res = await this.$axios.$post(api.feecback, {}, { docid });
-    if (res.errcode === 0) commit(types.UPDATED, res.data);
+  async feedback({ commit }, { docid, feedback }) {
+    const res = await this.$axios.$post(api.feedback, { feedback }, { docid });
+    // if (res.errcode === 0) commit(types.UPDATED, res.data);
     return res;
   },
 };

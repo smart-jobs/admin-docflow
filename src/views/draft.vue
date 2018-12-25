@@ -1,7 +1,7 @@
 <template>
   <div class="lite">
     <el-card class="right list" size="mini" v-if="view == 'list'">
-      <div slot="header" class="clearfix">
+      <div slot="header">
         <span>公文列表</span>
         <el-button icon="el-icon-plus" style="float: right; padding: 3px 0" type="text" @click="handleNew" v-if="status == 'draft'">起草公文</el-button>
       </div>
@@ -10,11 +10,11 @@
         <template slot="list-ext">
           <el-table-column width="48" label="..." align="center">
             <div slot-scope="scope">
-              <el-tooltip content="包含附件" class="icon">
-                <span><i class="naf-icons naf-icon-attachment" v-if="scope.row.attachment &amp;&amp; scope.row.attachment.length &gt; 0"></i></span>
+              <el-tooltip content="包含附件" class="icon" v-if="scope.row.attachment &amp;&amp; scope.row.attachment.length &gt; 0">
+                <span><i class="naf-icons naf-icon-attachment"></i></span>
               </el-tooltip>
-              <el-tooltip content="需要回执" class="icon">
-                <span><i class="naf-icons naf-icon-receipt" v-if="scope.row.feedback &amp;&amp; scope.row.feedback.required"></i></span>
+              <el-tooltip content="需要回执" class="icon" v-if="scope.row.feedback &amp;&amp; scope.row.feedback.required">
+                <span><i class="naf-icons naf-icon-receipt"></i></span>
               </el-tooltip>
             </div>
           </el-table-column>
@@ -22,7 +22,7 @@
       </data-grid>
     </el-card>
     <el-card class="right details" size="mini" v-else-if="view == 'form'">
-      <div slot="header" class="clearfix">
+      <div slot="header">
         <span>{{form.isNew?'起草公文':'修改公文'}}</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
@@ -32,7 +32,7 @@
       </el-scrollbar>
     </el-card>
     <el-card class="right details" size="mini" v-else>
-      <div slot="header" class="clearfix">
+      <div slot="header">
         <span>公文预览</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
@@ -135,11 +135,12 @@ export default {
       this.$checkRes(res);
     },
     statusLabel: (row, column, cellValue, index) => {
+      const doneCount = row && row.posts && row.posts.filter(p => p.status === 'done').length;
       switch (cellValue) {
         case 'draft':
           return '草稿';
         case 'post':
-          return '已发';
+          return `已发(${doneCount}/${row.posts.length})`;
         case 'done':
           return '办结';
         case 'archive':
@@ -149,6 +150,9 @@ export default {
       }
     },
     receiverLabel: (row, column, cellValue, index) => {
+      if (cellValue && cellValue.includes('all')) {
+        return '全部';
+      }
       return cellValue && cellValue.join(',');
     },
   },

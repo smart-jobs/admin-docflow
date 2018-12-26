@@ -9,7 +9,7 @@ const api = {
   fetch: '/docflow/outbox/fetch',
   query: '/docflow/outbox/query',
   posts: '/docflow/outbox/posts',
-  feedback: '/docflow/outbox/feedback',
+  feedback: '/docflow/feedback/list',
 };
 // initial state
 export const state = () => ({
@@ -60,6 +60,15 @@ export const actions = {
     return res;
   },
   async queryFeedback({ commit }, { docid }) {
+    const res = await this.$axios.$get(api.feedback, { docid });
+    if (res.errcode === 0) {
+      commit(types.SUB_LOADED, res);
+    } else {
+      commit(types.SUB_LOADED, { data: [] });
+    }
+    return res;
+  },
+  async exportFeedback({ commit }, { docid }) {
     const res = await this.$axios.$get(api.feedback, { docid });
     if (res.errcode === 0) {
       commit(types.SUB_LOADED, res);

@@ -40,7 +40,7 @@
         <div class="action">
           <el-button icon="el-icon-arrow-left" type="text" @click="view = 'list'">返回</el-button>
         </div>
-        <div class="title">接收明细 - {{current.title}}</div>
+        <div class="title">接收明细 -《{{current.title}}》</div>
       </template>
       <post-list></post-list>
     </el-card>
@@ -49,7 +49,7 @@
         <div class="action">
           <el-button icon="el-icon-arrow-left" type="text" @click="view = 'list'">返回</el-button>
         </div>
-        <div class="title">公文回执 - {{current.title}}</div>
+        <div class="title">公文回执 -《{{current.title}}》</div>
       </template>
       <feedback-list></feedback-list>
     </el-card>

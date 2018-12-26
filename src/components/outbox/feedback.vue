@@ -1,6 +1,7 @@
 <template>
   <div style="padding: 10px 20px;">
-    <el-button icon="el-icon-download" size="mini" type="primary" style="margin-bottom: 10px; width: 100px;">导出</el-button>
+    <el-button icon="el-icon-download" size="mini" type="primary"
+      @click="handleExport">导出</el-button>
     <data-grid size="mini" :data="items" :meta="[]">
       <el-table-column v-for="(field,index) in fields" :key="index" :prop="field" :label="field"></el-table-column>
       <template slot="oper">
@@ -27,8 +28,11 @@ export default {
   },
   methods: {
     ...mapActions(['queryFeedback']),
-    async handleExport() {
-      console.log('export feedback');
+    handleExport() {
+      const baseUrl = process.env.VUE_APP_AXIOS_BASE_URL;
+      const docid = this.current.id;
+      const url = `${baseUrl}/docflow/feedback/export?docid=${docid}`;
+      window.open(url, '_blank');
     },
   },
   computed: {
@@ -50,6 +54,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .el-button {
-  margin: 10px 20px;
+  margin-bottom: 10px;
+  width: 100px;
 }
 </style>

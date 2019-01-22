@@ -62,6 +62,9 @@ export default {
     DocView,
     FeedbackForm,
   },
+  metaInfo: {
+    title: '收文',
+  },
   mounted() {
     this.handleQuery();
   },

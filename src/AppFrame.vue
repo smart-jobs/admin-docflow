@@ -1,37 +1,47 @@
 <template>
-  <scroll-page id="app">
+  <div id="app">
     <div class="weui-loadmore" v-if="loading">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
     </div>
-    <router-view v-else/>
-  </scroll-page>
+    <frame :menuItems="menuItems" v-else>
+    </frame>
+  </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import ScrollPage from '@naf/layouts/scroll-page';
+import Frame from '@/layouts/frame';
 
 export default {
   components: {
     ScrollPage,
+    Frame,
   },
   name: 'App',
   metaInfo: {
-    title: '公文系统',
-    titleTemplate: '公文系统 - %s',
+    title: '就业系统',
+    titleTemplate: '就业系统 - %s',
   },
   async mounted() {
     // const res = await this.load();
     // this.$checkRes(res, () => {});
   },
   computed: {
-    ...mapState(['loading']),
+    ...mapState({
+      loading: 'loading',
+      menuItems: state => state.menu.items,
+    }),
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+#app {
+  height: 100%;
+  //width: 100%;
+}
 .weui-loadmore {
   position: absolute;
   top: 40%;

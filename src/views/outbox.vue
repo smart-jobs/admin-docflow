@@ -59,7 +59,6 @@
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
       <el-scrollbar>
-        <doc-view :data="current" />
       </el-scrollbar>
     </el-card>
   </div>
@@ -86,6 +85,9 @@ export default {
     DocView,
     PostList,
     FeedbackList,
+  },
+  metaInfo: {
+    title: '发文',
   },
   async mounted() {
     await this.loadDict('unit');

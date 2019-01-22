@@ -14,6 +14,9 @@ export default {
   components: {
     DataGrid,
   },
+  metaInfo: {
+    title: '待办',
+  },
   mounted() {
     this.load();
   },

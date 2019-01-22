@@ -60,6 +60,9 @@ export default {
     DataGrid,
     DocView,
   },
+  metaInfo: {
+    title: '发文',
+  },
   mounted() {
     this.handleQuery();
   },

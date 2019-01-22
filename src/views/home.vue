@@ -6,8 +6,9 @@
 
 <script>
 export default {
-  head: {
-    title: '首页',
+  metaInfo: {
+    title: '公文系统',
+    titleTemplate: '%s',
   },
 };
 </script>

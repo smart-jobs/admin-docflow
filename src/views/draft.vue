@@ -26,19 +26,15 @@
         <span>{{form.isNew?'起草公文':'修改公文'}}</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
-      <el-scrollbar>
-        <draft-form :data="form.data" :is-new="form.isNew" @save="handleSave" @cancel="view = 'list'">
-        </draft-form>
-      </el-scrollbar>
+      <draft-form :data="form.data" :is-new="form.isNew" @save="handleSave" @cancel="view = 'list'">
+      </draft-form>
     </el-card>
     <el-card class="right details" size="mini" v-else>
       <div slot="header">
         <span>公文预览</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
-      <el-scrollbar>
-        <doc-view :data="current" />
-      </el-scrollbar>
+      <doc-view :data="current" />
     </el-card>
   </div>
 </template>

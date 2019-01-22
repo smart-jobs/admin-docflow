@@ -8,22 +8,14 @@
     </el-header>
     <el-main style="padding: 0;display: flex;">
       <el-container class="main">
-        <el-container class="layout">
-          <el-aside :width="asideWidth" class="sider" v-show="asideShow">
-            <el-scrollbar>
-              <naf-sider :menu-items="menuItems" :style="{width: asideWidth}" theme="light" :is-collapse="menuCollapse" />
-            </el-scrollbar>
-          </el-aside>
-          <el-main class="content">
-            <el-alert :title="errMsg" type="info" :description="errDesc" show-icon v-if="showError">
-            </el-alert>
-            <div class="page" ref="pageContainer">
-              <scroll-page>
-                <router-view />
-              </scroll-page>
-            </div>
-          </el-main>
-        </el-container>
+        <el-aside :width="asideWidth" class="sider" v-show="asideShow">
+          <naf-sider :menu-items="menuItems" :style="{width: asideWidth}" theme="light" :is-collapse="menuCollapse" />
+        </el-aside>
+        <el-main class="page">
+          <el-alert :title="errMsg" type="info" :description="errDesc" show-icon v-if="showError">
+          </el-alert>
+          <router-view v-else />
+        </el-main>
       </el-container>
     </el-main>
   </el-container>
@@ -31,7 +23,6 @@
 
 <script>
 import config from '@frame/config';
-import ScrollPage from '@naf/layouts/scroll-page';
 import NafSider from '@naf/frame/sider';
 import NafBread from '@naf/frame/bread';
 import NafLogo from './logo';
@@ -50,7 +41,6 @@ const { layout = {} } = config;
 export default {
   name: 'Frame',
   components: {
-    ScrollPage,
     NafSider,
     NafLogo,
     NafLiteBar,
@@ -114,44 +104,20 @@ export default {
 }
 .sider {
   background: #fff;
-  max-height: 100%;
-  overflow: initial;
+  height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   border-right: solid 1px #e6e6e6;
-  display: flex;
-  flex-direction: column;
-  /*.el-menu {
-      height: 100%;
-    }*/
-  .logo {
-    flex: 0;
-  }
-  .el-scrollbar {
-    flex: 1;
-    // height: 100%;
-    /deep/ .el-scrollbar__wrap {
-      // margin-right: 0 !important;
-      overflow-x: hidden;
-    }
-  }
 }
 .main {
   // FOR EDGE
   overflow: hidden;
 }
-.content {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  .bread {
-    padding: 10px;
-  }
-  .page {
-    display: flex;
-    flex: 1;
-    padding: 0;
-    overflow: hidden;
-  }
+.page {
+  overflow: auto;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
 }
 </style>

@@ -11,12 +11,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import ScrollPage from '@naf/layouts/scroll-page';
 import Frame from '@/layouts/frame';
 
 export default {
   components: {
-    ScrollPage,
     Frame,
   },
   name: 'App',

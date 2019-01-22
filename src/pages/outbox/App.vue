@@ -1,21 +1,19 @@
 <template>
-  <scroll-page id="app">
+  <div id="app">
     <div class="weui-loadmore" v-if="loading">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
     </div>
     <frame :menu-items="menuItems" v-else />
-  </scroll-page>
+  </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import ScrollPage from '@naf/layouts/scroll-page';
 import Frame from '@/layouts/frame';
 
 export default {
   components: {
-    ScrollPage,
     Frame,
   },
   name: 'App',

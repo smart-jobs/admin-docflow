@@ -26,9 +26,7 @@
         <span>公文详情</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
-      <el-scrollbar>
         <doc-view :data="current.doc" />
-      </el-scrollbar>
     </el-card>
     <el-card class="right details" size="mini" v-else>
       <div slot="header">
@@ -38,9 +36,7 @@
         </div>
         <div class="title">公文回执</div>
       </div>
-      <el-scrollbar>
         <feedback-form :fields="current.doc.feedback.fields" :data="feedbackItems" @change="onFeedbackChange" />
-      </el-scrollbar>
     </el-card>
   </div>
 </template>

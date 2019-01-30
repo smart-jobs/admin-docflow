@@ -11,6 +11,8 @@ module.exports = {
     details: 'src/details/main.js',
   },
 
+  // transpileDependencies: ['naf-core'],
+
   configureWebpack: {
     externals: {
       'element-ui': 'Element',

@@ -11,3 +11,6 @@ export const modules = {
 export const state = () => {};
 export const mutations = {};
 export const actions = {};
+export const getters = {
+  userinfo: () => '',
+};

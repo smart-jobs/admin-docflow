@@ -2,7 +2,7 @@
   <el-container class="layout" direction="vertical">
     <el-header class="header" :height="layout.headerHeight" :style="{lineHeight: layout.headerHeight}">
       <div class="header-box">
-        <naf-logo :width="asideWidth" :shortName="shortName" :nav-mode="navMode" @switch-mode="switchMode" />
+        <naf-logo :width="asideWidth" :shortName="shortName"/>
         <naf-lite-bar :menu-collapse="menuCollapse" @toggle-menu="toggleMenu" />
       </div>
     </el-header>

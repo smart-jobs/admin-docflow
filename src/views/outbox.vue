@@ -5,8 +5,18 @@
         <span>公文列表</span>
         <el-button icon="el-icon-plus" style="float: right; padding: 3px 0" type="text" @click="handleNew" v-if="status == 'draft'">起草公文</el-button>
       </div>
-      <data-grid :data="items" :meta="fields" :operation="listOper" :paging="true" :total="total" @query="handleQuery"
-                 @preview="handlePreview" @finish="handleFinish" @archive="handleArchive" @feedback="handleFeedback">
+      <data-grid
+        :data="items"
+        :meta="fields"
+        :operation="listOper"
+        :paging="true"
+        :total="total"
+        @query="handleQuery"
+        @preview="handlePreview"
+        @finish="handleFinish"
+        @archive="handleArchive"
+        @feedback="handleFeedback"
+      >
         <template slot="list-ext">
           <el-table-column width="48" label="..." align="center">
             <div slot-scope="scope">
@@ -25,9 +35,9 @@
         <el-table-column label="收办状态" prop="status" :formatter="statusLabel">
           <template slot-scope="{ row }">
             <span v-if="row.status == 'post'">
-              <el-button type="text" @click="handleDetails(row)" size="mini">{{statusLabel(row)}}</el-button>
+              <el-button type="text" @click="handleDetails(row)" size="mini">{{ statusLabel(row) }}</el-button>
             </span>
-            <span v-else>{{statusLabel(row)}}</span>
+            <span v-else>{{ statusLabel(row) }}</span>
           </template>
         </el-table-column>
         <el-table-column label="发文用户" prop="meta.createdBy" show-overflow-tooltip />
@@ -40,7 +50,7 @@
         <div class="action">
           <el-button icon="el-icon-arrow-left" type="text" @click="view = 'list'">返回</el-button>
         </div>
-        <div class="title">接收明细 -《{{current.title}}》</div>
+        <div class="title">接收明细 -《{{ current.title }}》</div>
       </template>
       <post-list></post-list>
     </el-card>
@@ -49,7 +59,7 @@
         <div class="action">
           <el-button icon="el-icon-arrow-left" type="text" @click="view = 'list'">返回</el-button>
         </div>
-        <div class="title">公文回执 -《{{current.title}}》</div>
+        <div class="title">公文回执 -《{{ current.title }}》</div>
       </template>
       <feedback-list></feedback-list>
     </el-card>
@@ -58,7 +68,7 @@
         <span>公文预览</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
-        <doc-view :data="current" />
+      <doc-view :data="current" />
     </el-card>
   </div>
 </template>

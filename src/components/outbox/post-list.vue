@@ -1,7 +1,6 @@
 <template>
   <div style="padding: 10px 20px;">
-    <data-grid :data="subitems" :meta="fields" :operation="operation" @remind="handleRemind">
-    </data-grid>
+    <data-grid :data="subitems" :meta="fields" :operation="operation" @remind="handleRemind"> </data-grid>
   </div>
 </template>
 <script>

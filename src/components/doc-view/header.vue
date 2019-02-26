@@ -1,8 +1,8 @@
 <template>
   <section class="header">
     <h1 class="title">吉林省高等学校毕业生就业指导中心文件</h1>
-    <p class="desc">{{data.docno}}</p>
-    <hr>
+    <p class="desc">{{ data.docno }}</p>
+    <hr />
   </section>
 </template>
 <script>

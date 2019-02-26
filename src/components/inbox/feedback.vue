@@ -1,13 +1,13 @@
 <template>
   <div style="padding: 10px 20px;">
     <data-grid size="mini" :data="items" :meta="[]" :operation="operation" @delete="handleDelete">
-      <el-table-column v-for="(field,index) in fields" :key="index" :prop="field" :label="field"></el-table-column>
+      <el-table-column v-for="(field, index) in fields" :key="index" :prop="field" :label="field"></el-table-column>
     </data-grid>
     <div class="weui-loadmore weui-loadmore_line">
       <span class="weui-loadmore__tips">添加回执</span>
     </div>
     <el-form ref="form" :model="form" size="mini" label-width="100px">
-      <el-form-item v-for="(field,index) in fields" :key="index" :label="field" :required="true">
+      <el-form-item v-for="(field, index) in fields" :key="index" :label="field" :required="true">
         <el-input v-model="form[index]"></el-input>
       </el-form-item>
       <el-form-item>

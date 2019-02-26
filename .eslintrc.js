@@ -17,11 +17,10 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-console': 'off',
     'prettier/prettier': [
-      'error',
+      'warn',
       {
         singleQuote: true,
         trailingComma: 'es5',
-        bracketSpacing: true,
         jsxBracketSameLine: true,
         printWidth: 160,
       },

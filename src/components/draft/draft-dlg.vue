@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="isNew?'起草公文':'修改草稿'" :visible.sync="visible" :close-on-click-modal="false">
+  <el-dialog :title="isNew ? '起草公文' : '修改草稿'" :visible.sync="visible" :close-on-click-modal="false">
     <el-form ref="form" :model="form" :rules="rules" size="mini" label-width="80px">
       <slot>
         <el-form-item label="文号" prop="docNo" :required="true">

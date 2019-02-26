@@ -1,7 +1,6 @@
 <template>
   <div class="lite">
-    <data-grid :data="items" :meta="fields" :operation="operation" @open="handleOpen" @reply="handleReply">
-    </data-grid>
+    <data-grid :data="items" :meta="fields" :operation="operation" @open="handleOpen" @reply="handleReply"> </data-grid>
   </div>
 </template>
 <script>
@@ -73,5 +72,4 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

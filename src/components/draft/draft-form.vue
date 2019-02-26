@@ -12,11 +12,9 @@
       </el-form-item>
       <el-form-item label="接收单位" prop="receiver">
         <el-select v-model="form.receiver" placeholder="请选择" multiple style="width: 100%;" @change="handleReceiver">
-          <el-option label="（全部）" value="all">
-          </el-option>
+          <el-option label="（全部）" value="all"> </el-option>
           <el-option-group label="单位列表">
-            <el-option v-for="item in units" :key="item.code" :label="item.name" :value="item.code">
-            </el-option>
+            <el-option v-for="item in units" :key="item.code" :label="item.name" :value="item.code"> </el-option>
           </el-option-group>
         </el-select>
       </el-form-item>
@@ -24,8 +22,7 @@
         <editor v-model="form.content"></editor>
       </el-form-item>
       <el-form-item label="有效期" prop="meta.expiredAt">
-        <el-date-picker v-model="form.meta.expiredAt" type="date" placeholder="选择日期">
-        </el-date-picker>
+        <el-date-picker v-model="form.meta.expiredAt" type="date" placeholder="选择日期"> </el-date-picker>
       </el-form-item>
       <el-form-item label="附件" prop="attachment">
         <file-upload v-model="form.attachment"></file-upload>

@@ -1,7 +1,7 @@
 <template>
   <!--简洁用户菜单-->
   <div class="right lite">
-    <span class="name">{{userinfo && userinfo.name || '管理員'}}</span>
+    <span class="name">{{ (userinfo && userinfo.name) || '管理員' }}</span>
   </div>
 </template>
 <script>

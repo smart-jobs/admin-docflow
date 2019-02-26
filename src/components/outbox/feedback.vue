@@ -1,9 +1,8 @@
 <template>
   <div style="padding: 10px 20px;">
-    <el-button icon="el-icon-download" size="mini" type="primary"
-      @click="handleExport">导出</el-button>
+    <el-button icon="el-icon-download" size="mini" type="primary" @click="handleExport">导出</el-button>
     <data-grid size="mini" :data="items" :meta="[]">
-      <el-table-column v-for="(field,index) in fields" :key="index" :prop="field" :label="field"></el-table-column>
+      <el-table-column v-for="(field, index) in fields" :key="index" :prop="field" :label="field"></el-table-column>
       <template slot="oper">
         <span>no operation</span>
       </template>

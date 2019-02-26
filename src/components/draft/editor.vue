@@ -1,6 +1,5 @@
 <template>
-  <div ref="editor" style="text-align:left">
-  </div>
+  <div ref="editor" style="text-align:left"></div>
 </template>
 <script>
 import E from 'wangeditor';

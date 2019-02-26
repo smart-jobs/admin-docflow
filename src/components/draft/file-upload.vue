@@ -1,7 +1,16 @@
 <template>
-  <el-upload class="upload-demo" action="/files/docflow/attachment/upload" :limit="limit" v-once :file-list="[...this.fileList]"
-             :on-preview="handlePreview" :before-remove="beforeRemove" :on-exceed="handleExceed"
-             :before-upload="beforeUpload" :on-success="handleSuccess">
+  <el-upload
+    class="upload-demo"
+    action="/files/docflow/attachment/upload"
+    :limit="limit"
+    v-once
+    :file-list="[...this.fileList]"
+    :on-preview="handlePreview"
+    :before-remove="beforeRemove"
+    :on-exceed="handleExceed"
+    :before-upload="beforeUpload"
+    :on-success="handleSuccess"
+  >
     <el-button size="mini" type="primary">点击上传</el-button>
     <div slot="tip" class="el-upload__tip">文件大小不能超过5MB</div>
   </el-upload>

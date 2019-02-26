@@ -4,8 +4,7 @@
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
     </div>
-    <frame :menuItems="menuItems" v-else>
-    </frame>
+    <frame :menuItems="menuItems" v-else> </frame>
   </div>
 </template>
 

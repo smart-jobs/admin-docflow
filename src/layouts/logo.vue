@@ -1,9 +1,9 @@
 <template>
-  <div class="logo" :style="{width: width}">
+  <div class="logo" :style="{ width: width }">
     <router-link to="/">
       <img src="@/assets/logo1.svg" alt="logo" style="height:32px;width:32px;" />
     </router-link>
-    <h1>{{shortName}}</h1>
+    <h1>{{ shortName }}</h1>
   </div>
 </template>
 <script>

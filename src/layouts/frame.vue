@@ -1,19 +1,18 @@
 <template>
   <el-container class="layout" direction="vertical">
-    <el-header class="header" :height="layout.headerHeight" :style="{lineHeight: layout.headerHeight}">
+    <el-header class="header" :height="layout.headerHeight" :style="{ lineHeight: layout.headerHeight }">
       <div class="header-box">
-        <naf-logo :width="asideWidth" :shortName="shortName"/>
+        <naf-logo :width="asideWidth" :shortName="shortName" />
         <naf-lite-bar :menu-collapse="menuCollapse" @toggle-menu="toggleMenu" />
       </div>
     </el-header>
     <el-main style="padding: 0;display: flex;">
       <el-container class="main">
         <el-aside :width="asideWidth" class="sider" v-show="asideShow">
-          <naf-sider :menu-items="menuItems" :style="{width: asideWidth}" theme="light" :is-collapse="menuCollapse" />
+          <naf-sider :menu-items="menuItems" :style="{ width: asideWidth }" theme="light" :is-collapse="menuCollapse" />
         </el-aside>
         <el-main class="page">
-          <el-alert :title="errMsg" type="info" :description="errDesc" show-icon v-if="showError">
-          </el-alert>
+          <el-alert :title="errMsg" type="info" :description="errDesc" show-icon v-if="showError"> </el-alert>
           <router-view v-else />
         </el-main>
       </el-container>

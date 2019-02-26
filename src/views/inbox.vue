@@ -5,8 +5,16 @@
         <span>公文列表</span>
         <el-button icon="el-icon-plus" style="float: right; padding: 3px 0" type="text" @click="handleNew" v-if="status == 'draft'">起草公文</el-button>
       </div>
-      <data-grid :data="items" :meta="fields" :operation="listOper" :paging="true" :total="total" @query="handleQuery"
-                 @preview="handlePreview" @feedback="handleFeedback">
+      <data-grid
+        :data="items"
+        :meta="fields"
+        :operation="listOper"
+        :paging="true"
+        :total="total"
+        @query="handleQuery"
+        @preview="handlePreview"
+        @feedback="handleFeedback"
+      >
         <template slot="list-ext">
           <el-table-column width="48" label="..." align="center">
             <div slot-scope="scope">
@@ -26,7 +34,7 @@
         <span>公文详情</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
-        <doc-view :data="current.doc" />
+      <doc-view :data="current.doc" />
     </el-card>
     <el-card class="right details" size="mini" v-else>
       <div slot="header">
@@ -36,7 +44,7 @@
         </div>
         <div class="title">公文回执</div>
       </div>
-        <feedback-form :fields="current.doc.feedback.fields" :data="feedbackItems" @change="onFeedbackChange" />
+      <feedback-form :fields="current.doc.feedback.fields" :data="feedbackItems" @change="onFeedbackChange" />
     </el-card>
   </div>
 </template>

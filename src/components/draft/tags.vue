@@ -1,12 +1,19 @@
 <template>
   <div class="container">
     <el-tag size="medium" :key="tag" v-for="tag in dynamicTags" closable :disable-transitions="false" @close="handleClose(tag)">
-      {{tag}}
+      {{ tag }}
     </el-tag>
-    <el-input class="input-new-tag" v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="mini"
-              @keyup.enter.native="handleInputConfirm" @blur="handleInputConfirm">
+    <el-input
+      class="input-new-tag"
+      v-if="inputVisible"
+      v-model="inputValue"
+      ref="saveTagInput"
+      size="mini"
+      @keyup.enter.native="handleInputConfirm"
+      @blur="handleInputConfirm"
+    >
     </el-input>
-    <el-button v-else class="button-new-tag" size="mini" @click="showInput">+ {{addText}}</el-button>
+    <el-button v-else class="button-new-tag" size="mini" @click="showInput">+ {{ addText }}</el-button>
   </div>
 </template>
 <script>

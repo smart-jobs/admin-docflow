@@ -2,7 +2,9 @@
   <section class="attachment" v-if="hasData">
     <h4>附件:</h4>
     <ol>
-      <li v-for="(item,index) in data" :key="index"><a target="_blank" :href="item.uri">{{ item.name }}</a></li>
+      <li v-for="(item, index) in data" :key="index">
+        <a target="_blank" :href="item.uri">{{ item.name }}</a>
+      </li>
     </ol>
   </section>
 </template>

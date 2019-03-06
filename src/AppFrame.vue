@@ -31,7 +31,14 @@ export default {
       menuItems: state => state.menu.items,
     }),
     menus() {
-      return this.menuItems && this.menuItems.filter(p => p.options && p.options.platform === this.platform);
+      if (this.menuItems) {
+        const filter = p => p.options && (!p.options.platform || p.options.platform === this.platform);
+        return this.menuItems.filter(filter).map(p => {
+          if (p.children) return { ...p, children: p.children.filter(filter) };
+          return p;
+        });
+      }
+      return [];
     },
   },
   methods: {

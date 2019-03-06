@@ -21,7 +21,7 @@ export const state = () => {
 };
 
 export const mutations = {
-  [types.USER_INIT](state) {
+  [types.LOADED](state) {
     state.userinfo = util.user;
     const { unit } = util.user;
     if (unit) {
@@ -39,7 +39,7 @@ export const mutations = {
 export const actions = {
   async init({ commit }) {
     console.log('call init...');
-    commit(types.USER_INIT);
+    commit(types.LOADED);
   },
 };
 export const getters = {

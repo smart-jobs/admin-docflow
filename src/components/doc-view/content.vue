@@ -14,7 +14,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .main {
-  padding: 10 20px;
+  padding: 10px 20px;
   .title {
     text-align: center;
     font-size: 1.5em;

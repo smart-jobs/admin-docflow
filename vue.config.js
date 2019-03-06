@@ -29,6 +29,7 @@ module.exports = {
 
   devServer: {
     port: 3003,
+    disableHostCheck: true,
     before(app) {
       app.use((req, res, next) => {
         // eslint-disable-next-line no-console
@@ -40,6 +41,13 @@ module.exports = {
       '/platform/api': {
         target: 'http://smart.localhost:8000',
         // target: 'http://99991.smart.chinahuian.cn',
+      },
+      '/files': {
+        target: 'http://smart.chinahuian.cn',
+      },
+      '/ddapi': {
+        target: 'http://smart.localhost:8008',
+        pathRewrite: { '^/ddapi': '' },
       },
     },
   },

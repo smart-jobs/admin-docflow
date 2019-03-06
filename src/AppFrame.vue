@@ -4,7 +4,7 @@
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
     </div>
-    <frame :menuItems="menuItems" v-else> </frame>
+    <frame :menuItems="menus" v-else> </frame>
   </div>
 </template>
 
@@ -21,15 +21,21 @@ export default {
     title: '公文系统',
     titleTemplate: '公文系统 - %s',
   },
-  async mounted() {
-    // const res = await this.load();
-    // this.$checkRes(res, () => {});
+  mounted() {
+    this.init();
   },
   computed: {
     ...mapState({
       loading: 'loading',
+      platform: 'platform',
       menuItems: state => state.menu.items,
     }),
+    menus() {
+      return this.menuItems && this.menuItems.filter(p => p.options && p.options.platform === this.platform);
+    },
+  },
+  methods: {
+    ...mapActions(['init']),
   },
 };
 </script>

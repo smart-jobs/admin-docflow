@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
     <i class="naf-icons" :class="{ 'naf-icon-unfold': menuCollapse, 'naf-icon-fold': !menuCollapse }" @click="toggleMenu"></i>
-    <naf-user />
+    <naf-user class="right" />
   </div>
 </template>
 <script>
@@ -25,8 +25,10 @@ export default {
 .banner {
   flex: 1;
   display: block;
-  flex-direction: row;
   align-items: center;
   padding: 0 20px;
+  .right {
+    float: right;
+  }
 }
 </style>

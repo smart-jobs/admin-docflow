@@ -5,3 +5,4 @@ export const SELECTED = 'SELECTED';
 export const UPDATED = 'UPDATED';
 export const CREATED = 'CREATED';
 export const DELETED = 'DELETED';
+export const USER_INIT = 'USER_INIT';

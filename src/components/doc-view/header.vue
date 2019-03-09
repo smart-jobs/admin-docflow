@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  name: 'doc-view',
+  name: 'doc-header',
   props: {
     data: { type: Object, required: true },
   },

@@ -5,8 +5,18 @@
         <span>公文列表</span>
         <el-button icon="el-icon-plus" style="float: right; padding: 3px 0" type="text" @click="handleNew" v-if="status == 'draft'">起草公文</el-button>
       </div>
-      <data-grid :data="items" :meta="listFields" :operation="listOper" :paging="true" :total="total" @edit="handleEdit"
-                 @delete="handleDelete" @post="handlePost" @query="handleQuery" @preview="handlePreview">
+      <data-grid
+        :data="items"
+        :meta="listFields"
+        :operation="listOper"
+        :paging="true"
+        :total="total"
+        @edit="handleEdit"
+        @delete="handleDelete"
+        @post="handlePost"
+        @query="handleQuery"
+        @preview="handlePreview"
+      >
         <template slot="list-ext">
           <el-table-column width="48" label="..." align="center">
             <div slot-scope="scope">
@@ -23,11 +33,10 @@
     </el-card>
     <el-card class="right details" size="mini" v-else-if="view == 'form'">
       <div slot="header">
-        <span>{{form.isNew?'起草公文':'修改公文'}}</span>
+        <span>{{ form.isNew ? '起草公文' : '修改公文' }}</span>
         <el-button icon="el-icon-arrow-left" style="float: right; padding: 3px 10px;" type="text" @click="view = 'list'">返回</el-button>
       </div>
-      <draft-form :data="form.data" :is-new="form.isNew" @save="handleSave" @cancel="view = 'list'">
-      </draft-form>
+      <draft-form :data="form.data" :is-new="form.isNew" @save="handleSave" @cancel="view = 'list'"> </draft-form>
     </el-card>
     <el-card class="right details" size="mini" v-else>
       <div slot="header">

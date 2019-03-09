@@ -12,7 +12,7 @@
 import _ from 'lodash';
 
 export default {
-  name: 'doc-view',
+  name: 'doc-attachment',
   props: {
     data: { type: Object, required: true },
   },

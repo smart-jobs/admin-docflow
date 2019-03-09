@@ -19,7 +19,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="内容" prop="content" :required="true">
-        <editor v-model="form.content"></editor>
+        <wang-editor v-model="form.content"></wang-editor>
       </el-form-item>
       <el-form-item label="有效期" prop="meta.expiredAt">
         <el-date-picker v-model="form.meta.expiredAt" type="date" placeholder="选择日期"> </el-date-picker>
@@ -44,7 +44,7 @@
 <script>
 import _ from 'lodash';
 import { createNamespacedHelpers } from 'vuex';
-import Editor from './editor';
+import WangEditor from './wang-editor';
 import FileUpload from './file-upload';
 import Tags from './tags';
 
@@ -58,7 +58,7 @@ const { mapActions } = createNamespacedHelpers('naf/dict');
 
 export default {
   components: {
-    Editor,
+    WangEditor,
     FileUpload,
     Tags,
   },

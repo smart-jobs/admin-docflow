@@ -28,7 +28,7 @@ const menus = [
 ];
 
 export default {
-  name: 'editor',
+  name: 'wang-editor',
   model: {
     prop: 'value',
     event: 'change', // 默认为input时间，此处改为change

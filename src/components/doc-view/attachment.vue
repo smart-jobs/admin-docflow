@@ -14,7 +14,7 @@ import _ from 'lodash';
 export default {
   name: 'doc-attachment',
   props: {
-    data: { type: Object, required: true },
+    data: { type: Array, required: true },
   },
   computed: {
     hasData() {

@@ -6,10 +6,10 @@ module.exports = {
   // baseUrl: './',
   publicPath: process.env.VUE_APP_ROOT_URL + 'docflow',
 
-  pages: {
-    index: 'src/main.js',
-    details: 'src/details/main.js',
-  },
+  // pages: {
+  //   index: 'src/main.js',
+  //   details: 'src/details/main.js',
+  // },
 
   // transpileDependencies: ['naf-core'],
 

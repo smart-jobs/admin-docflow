@@ -7,7 +7,7 @@
       </div>
       <data-grid
         :data="items"
-        :meta="listFields"
+        :meta="fields"
         :operation="listOper"
         :paging="true"
         :total="total"
@@ -16,6 +16,7 @@
         @post="handlePost"
         @query="handleQuery"
         @preview="handlePreview"
+        @archive="handleArchive"
       >
         <template slot="list-ext">
           <el-table-column width="48" label="..." align="center">
@@ -90,11 +91,11 @@ export default {
         ['delete', '删除', 'el-icon-delete', true],
         ['post', '递送', 'el-icon-share', true],
       ] /* 操作类型 */,
-      oper_view: [['preview', '预览', 'el-icon-view']] /* 操作类型 */,
+      oper_view: [['preview', '预览', 'el-icon-view'], ['archive', '归档', 'el-icon-document', true]] /* 操作类型 */,
     };
   },
   methods: {
-    ...mapActions(['query', 'create', 'delete', 'update', 'fetch', 'post']),
+    ...mapActions(['query', 'create', 'delete', 'update', 'fetch', 'post', 'archive']),
     async handleEdit({ id }) {
       const res = await this.fetch({ id });
       this.$checkRes(res, () => {
@@ -138,6 +139,10 @@ export default {
       const res = await this.post({ id });
       this.$checkRes(res, '递送公文成功');
     },
+    async handleArchive({ id }) {
+      const res = await this.archive({ id });
+      this.$checkRes(res, '归档公文成功');
+    },
     async handleQuery({ filter, paging } = {}) {
       this.view = 'list';
       const res = await this.query({ status: this.status, paging });
@@ -171,9 +176,6 @@ export default {
     ...mapState(['items', 'current', 'total']),
     status() {
       return this.$route.params.status || 'draft';
-    },
-    listFields() {
-      return this.status === 'draft' ? this.fields : this.fields.filter(item => item.name !== 'status');
     },
     listOper() {
       return this.status === 'draft' ? this.oper_edit : this.oper_view;

@@ -14,8 +14,8 @@
         @query="handleQuery"
         @preview="handlePreview"
         @finish="handleFinish"
-        @archive="handleArchive"
         @feedback="handleFeedback"
+        @remind="handleRemind"
       >
         <template slot="list-ext">
           <el-table-column width="48" label="..." align="center">
@@ -115,13 +115,13 @@ export default {
         { name: 'meta.expiredAt', label: '有效期', formatter: 'date:YYYY-MM-DD' },
       ],
       oper_work: [['preview', '预览', 'el-icon-view'], ['remind', '催办全部', 'el-icon-bell', true], ['finish', '办结', 'el-icon-circle-check-outline', true]],
-      oper_done: [['preview', '预览', 'el-icon-view'], ['archive', '归档', 'el-icon-document', true]],
+      oper_done: [['preview', '预览', 'el-icon-view']],
       oper_arch: [['preview', '预览', 'el-icon-view']],
       oper_feedback: [['preview', '预览', 'el-icon-view'], ['feedback', '查看回执', 'el-icon-edit-outline']],
     };
   },
   methods: {
-    ...mapActions(['query', 'fetch', 'finish', 'archive', 'remind']),
+    ...mapActions(['query', 'fetch', 'finish', 'remind']),
     ...mapMutations({
       selectDoc: types.SELECTED,
     }),
@@ -141,10 +141,6 @@ export default {
     async handleFinish({ id }) {
       const res = await this.finish({ id });
       this.$checkRes(res, '办结公文成功');
-    },
-    async handleArchive({ id }) {
-      const res = await this.archive({ id });
-      this.$checkRes(res, '归档公文成功');
     },
     async handleRemind({ id }) {
       const res = await this.remind({ id });

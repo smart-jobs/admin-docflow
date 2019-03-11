@@ -9,6 +9,7 @@ const api = {
   post: '/docflow/draft/post',
   fetch: '/docflow/draft/fetch',
   query: '/docflow/draft/query',
+  archive: '/docflow/outbox/archive',
 };
 // initial state
 export const state = () => ({
@@ -51,6 +52,11 @@ export const actions = {
   async post({ commit }, { id }) {
     const res = await this.$axios.$post(api.post, {}, { id });
     if (res.errcode === 0) commit(types.DELETED, { id });
+    return res;
+  },
+  async archive({ commit }, { id }) {
+    const res = await this.$axios.$post(api.archive, {}, { id });
+    if (res.errcode === 0) commit(types.UPDATED, res.data);
     return res;
   },
 };

@@ -46,8 +46,8 @@ export const actions = {
     if (res.errcode === 0) commit(types.UPDATED, res.data);
     return res;
   },
-  async remind({ commit }, { id }) {
-    const res = await this.$axios.$post(api.remind, {}, { id });
+  async remind({ commit }, { docid, unit }) {
+    const res = await this.$axios.$post(api.remind, {}, { docid, unit });
     return res;
   },
   async queryPosts({ commit }, { docid }) {

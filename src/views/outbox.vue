@@ -161,11 +161,12 @@ export default {
     },
     statusLabel: row => {
       const doneCount = row && row.posts && row.posts.filter(p => p.status === 'done').length;
+      const postCount = row && row.posts && row.posts.length;
       switch (row.status) {
         case 'draft':
           return '草稿';
         case 'post':
-          return `已发(${doneCount}/${row.posts.length})`;
+          return `已发(${doneCount}/${postCount})`;
         case 'done':
           return '办结';
         case 'archive':

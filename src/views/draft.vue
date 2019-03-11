@@ -139,17 +139,19 @@ export default {
       this.$checkRes(res, '递送公文成功');
     },
     async handleQuery({ filter, paging } = {}) {
+      this.view = 'list';
       const res = await this.query({ status: this.status, paging });
       this.$checkRes(res);
     },
     statusLabel: (row, column, cellValue, index) => {
-      const doneCount = row && row.posts && row.posts.filter(p => p.status === 'done').length;
-      const postCount = row && row.posts && row.posts.length;
+      const flag = row && row.posts;
+      const doneCount = flag && row.posts.filter(p => p.status === 'done').length;
+      const postCount = flag && row.posts.length;
       switch (cellValue) {
         case 'draft':
           return '草稿';
         case 'post':
-          return `已发(${doneCount}/${postCount})`;
+          return flag ? `已发(${doneCount}/${postCount})` : '已发';
         case 'done':
           return '办结';
         case 'archive':

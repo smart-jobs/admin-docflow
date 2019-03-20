@@ -21,7 +21,7 @@ export const actions = {
   async query({ commit }, { status = 'draft', paging = {} }) {
     const { page = 1, size = pageSize } = paging;
     const skip = Math.max(0, (page - 1) * size);
-    const res = await this.$axios.$get(api.query, { status, skip, size });
+    const res = await this.$axios.$get(api.query, { status, skip, limit: size });
     if (res.errcode === 0) {
       commit(types.LOADED, res);
     } else {

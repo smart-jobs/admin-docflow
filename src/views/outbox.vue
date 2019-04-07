@@ -17,7 +17,7 @@
         @feedback="handleFeedback"
         @remind="handleRemind"
       >
-        <template slot="list-ext">
+        <template slot="post">
           <el-table-column width="48" label="..." align="center">
             <div slot-scope="scope">
               <el-tooltip content="包含附件" class="icon" v-if="scope.row.attachment &amp;&amp; scope.row.attachment.length &gt; 0">

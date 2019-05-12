@@ -38,6 +38,17 @@ module.exports = {
       });
     },
     proxy: {
+      '/platform/api/docflow': {
+        // target: 'http://smart.localhost:8000',
+        target: 'http://localhost:8301',
+        pathRewrite: { '^/platform/api/docflow': '' },
+        onProxyReq(proxyReq, req, res) {
+          // add custom header to request
+          // proxyReq.setHeader('x-tenant', '10201');
+          proxyReq.setHeader('userid', '226217043733448926');
+          // or log the req
+        },
+      },
       '/platform/api': {
         // target: 'http://smart.localhost:8000',
         target: 'http://smart.chinahuian.cn',

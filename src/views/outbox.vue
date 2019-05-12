@@ -143,7 +143,7 @@ export default {
       this.$checkRes(res, '办结公文成功');
     },
     async handleRemind({ id }) {
-      const res = await this.remind({ id });
+      const res = await this.remind({ docid: id });
       this.$checkRes(res, '催办公文成功');
     },
     async handleQuery({ filter, paging } = {}) {
